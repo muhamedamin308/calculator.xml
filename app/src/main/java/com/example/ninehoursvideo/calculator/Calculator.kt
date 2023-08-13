@@ -26,14 +26,14 @@ class Calculator : AppCompatActivity() {
         }
     }
 
-    fun onClear(view : View) {
+    fun onClear() {
         binding.apply {
             currentResult.text = ""
             lastOperation.text = ""
         }
     }
 
-    fun onDecimal(view : View) {
+    fun onDecimal() {
         if (lastNumeric && ! lastDot) {
             binding.currentResult.append(Constant.DOT)
             lastNumeric = false
@@ -57,7 +57,7 @@ class Calculator : AppCompatActivity() {
         }
     }
 
-    fun onEqual(view : View) {
+    fun onEqual() {
         if (lastNumeric) {
             var tvValue = binding.currentResult.text.toString()
             try {
@@ -72,7 +72,7 @@ class Calculator : AppCompatActivity() {
                             val split = tvValue.split(lastOperator !!)
                             var firstOperator = split[0]
                             var secondOperator = split[1]
-                            var difference = ""
+                            val difference : String
                             lastOperation.text = currentResult.text
                             if (lastPercentage) {
                                 secondOperator =
@@ -154,7 +154,7 @@ class Calculator : AppCompatActivity() {
         }
     }
 
-    fun onNegative(view : View) {
+    fun onNegative() {
         binding.apply {
             if (! currentResult.text.contains(Constant.NEGATIVE)) {
                 lastOperation.text = ""

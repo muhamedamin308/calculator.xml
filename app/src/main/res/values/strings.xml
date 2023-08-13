@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Nine Hours Video</string>
+    <string name="app_name">Calculator</string>
     <string name="clear">C</string>
     <string name="positive_negative">+/-</string>
     <string name="percentage">%</string>

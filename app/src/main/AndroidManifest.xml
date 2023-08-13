@@ -12,12 +12,6 @@
         android:theme="@style/Theme.NineHoursVideo"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".age.CalculateAge"
-            android:exported="false" />
-        <activity
             android:name=".calculator.Calculator"
             android:exported="true"
             android:theme="@style/AppTheme.ActionBar.Transparent">
