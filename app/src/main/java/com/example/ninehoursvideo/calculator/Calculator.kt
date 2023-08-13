@@ -26,14 +26,14 @@ class Calculator : AppCompatActivity() {
         }
     }
 
-    fun onClear() {
+    fun onClear(view : View) {
         binding.apply {
             currentResult.text = ""
             lastOperation.text = ""
         }
     }
 
-    fun onDecimal() {
+    fun onDecimal(view : View) {
         if (lastNumeric && ! lastDot) {
             binding.currentResult.append(Constant.DOT)
             lastNumeric = false
@@ -57,7 +57,7 @@ class Calculator : AppCompatActivity() {
         }
     }
 
-    fun onEqual() {
+    fun onEqual(view : View) {
         if (lastNumeric) {
             var tvValue = binding.currentResult.text.toString()
             try {
@@ -154,7 +154,7 @@ class Calculator : AppCompatActivity() {
         }
     }
 
-    fun onNegative() {
+    fun onNegative(view : View) {
         binding.apply {
             if (! currentResult.text.contains(Constant.NEGATIVE)) {
                 lastOperation.text = ""
