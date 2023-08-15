@@ -4,6 +4,12 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.ninehoursvideo.calculator.Operations.addition
+import com.example.ninehoursvideo.calculator.Operations.division
+import com.example.ninehoursvideo.calculator.Operations.isOperatorAdded
+import com.example.ninehoursvideo.calculator.Operations.multiplication
+import com.example.ninehoursvideo.calculator.Operations.removeZeroAfterDot
+import com.example.ninehoursvideo.calculator.Operations.subtraction
 import com.example.ninehoursvideo.databinding.ActivityCalculatorBinding
 
 class Calculator : AppCompatActivity() {
@@ -39,13 +45,6 @@ class Calculator : AppCompatActivity() {
             lastNumeric = false
             lastDot = true
         }
-    }
-
-    private fun isOperatorAdded(value : String) : Boolean {
-        return if (value.startsWith(Constant.MINUS)) false
-        else value.contains(Constant.DIVIDE) || value.contains(Constant.PLUS) || value.contains(
-            Constant.MINUS
-        ) || value.contains(Constant.MULTIPLY)
     }
 
     fun onOperator(view : View) {
@@ -87,32 +86,28 @@ class Calculator : AppCompatActivity() {
                             when (lastOperator !!) {
                                 Constant.MINUS    -> {
                                     currentResult.text = removeZeroAfterDot(
-                                        firstOperator.toDouble().minus(secondOperator.toDouble())
-                                                .toString()
+                                        subtraction(firstOperator , secondOperator)
                                     )
                                     initializeCalculator()
                                 }
 
                                 Constant.DIVIDE   -> {
                                     currentResult.text = removeZeroAfterDot(
-                                        firstOperator.toDouble().div(secondOperator.toDouble())
-                                                .toString()
+                                        division(firstOperator , secondOperator)
                                     )
                                     initializeCalculator()
                                 }
 
                                 Constant.PLUS     -> {
                                     currentResult.text = removeZeroAfterDot(
-                                        firstOperator.toDouble().plus(secondOperator.toDouble())
-                                                .toString()
+                                        addition(firstOperator , secondOperator)
                                     )
                                     initializeCalculator()
                                 }
 
                                 Constant.MULTIPLY -> {
                                     currentResult.text = removeZeroAfterDot(
-                                        firstOperator.toDouble().times(secondOperator.toDouble())
-                                                .toString()
+                                        multiplication(firstOperator , secondOperator)
                                     )
                                     initializeCalculator()
                                 }
@@ -135,14 +130,6 @@ class Calculator : AppCompatActivity() {
                 e.printStackTrace()
             }
         }
-    }
-
-    private fun removeZeroAfterDot(result : String) : String {
-        var value = result
-        if (result.contains(".0")) {
-            value = result.substring(0 , result.length - 2)
-        }
-        return value
     }
 
     fun onPercentage(view : View) {
